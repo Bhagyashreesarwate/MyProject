@@ -11,26 +11,21 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 
-<body>
-    <header class="container">
-        <h1>
-            ADDITION
-        </h1>
-        <div class="questionTextBox" id="first">
+<body onload="updateQuestion()">
+    <div class="heading">ADDITION
 
-        </div>
-        +
-        <div class="questionTextBox" id="second">
+        <br>
+        <br>
+        <input class="calculator-grid" id="num1" type="text" readonly="true"> +
+        <input class="calculator-grid" id="num2" type="text" readonly="true"> =
 
-        </div>
+        <input class="calculator-grid" id="num3" type="text">
 
-        <div class="answerBox">
-            <input type="number" id="answer">
-        </div>
-        <div class="btn">
-            <button onClick="return myFunction()">submit</button>
-        </div>
-    </header>
+        <br>
+        <br>
+        <buttton class="xbutton" id="submit" onclick="checkAndUpdateQuestion()">submit</buttton>
+
+    </div>
 </body>
 
 </html>

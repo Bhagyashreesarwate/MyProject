@@ -1,34 +1,76 @@
-let r1 = 1;
+let n1 = 1
+let n2 = 2
+let n3 = 3
 
 
-let r2 = 2;
+function updateQuestion() {
+    console.log("\n\nupdate question .....")
+    n1 = Math.floor(Math.random() * 99) + 1;
+    n2 = Math.floor(Math.random() * 99) + 1;
 
+    let eN1 = document.getElementById("num1");
+    let oldn1 = eN1.value
+    eN1.value = n1
 
-function myFunction() {
-    let userAnswer = document.getElementById("answer").getAttribute("value");
-    console.log(userAnswer);
-    console.log("Values", r1, r2);
-    let correctAnswer = r1 + r2;
-    validateAnswer(userAnswer, correctAnswer);
-    generateNewQuestion();
+    let eN2 = document.getElementById("num2");
+    let oldn2 = eN2.value
+    eN2.value = n2
+
+    console.log(`oldn1=${oldn1}, oldn2=${oldn2}`)
+    console.log(`n1=${n1}, n2=${n2}`)
+
+    let eN3 = document.getElementById("num3");
+    eN3.value = ""
+
+    return true
 
 }
 
-function validateAnswer(userAnswer, correctAnswer) {
-    console.log(`useranswer=${userAnswer},correctanswer${correctAnswer}`);
-    if (userAnswer == correctAnswer) {
-        alert("congratulations");
+function checkAnswer() {
+    console.log("Checking answer")
+
+    let eN1 = document.getElementById("num1");
+    let strN1 = eN1.value
+    let vN1 = parseInt(strN1)
+
+    let eN2 = document.getElementById("num2");
+    let strN2 = eN2.value
+    let vN2 = parseInt(strN2)
+
+    let eN3 = document.getElementById("num3");
+    let strN3 = eN3.value
+    let vN3 = parseInt(strN3)
+
+    console.log(`strN1=${strN1}, strN2=${strN2}, strN3=${strN3}`)
+    console.log(`vN1=${vN1}, vN2=${vN2}, vN3=${vN3}`)
+
+    let userAnswer = vN3
+    let correctAnswer = vN1 + vN2
+
+    if (userAnswer != correctAnswer) {
+        showFailedMessage(userAnswer, correctAnswer)
+
     } else {
-        alert("oops the correct answer is " + correctAnswer);
+        showPassedMessage(correctAnswer)
+
     }
+
 }
 
-function generateNewQuestion() {
-    r1 = Math.floor(Math.random() * 100);
-    document.getElementById("first").value = r1;
-    console.log(`value of first set to ${r1}`);
+function checkAndUpdateQuestion() {
+    checkAnswer()
+    updateQuestion()
+}
 
-    r2 = Math.floor(Math.random() * 100);
-    document.getElementById("second").value = r2;
-    console.log(`value of second set to ${r2}`);
+
+function showFailedMessage(userAnswer, correctAnswer) {
+    let failedMsg = `Sorry --- you said ${userAnswer}\nBut the correct answer is ${correctAnswer}`
+    console.error(`Showing error message ...\n${failedMsg}`)
+    alert(failedMsg)
+}
+
+function showPassedMessage(correctAnswer) {
+    let succMsg = `Good Job!\nYou got the correct answer\n<${correctAnswer}>`
+    console.log(`Showing success message ...\n${succMsg}`)
+    alert(succMsg)
 }

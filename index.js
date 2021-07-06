@@ -26,6 +26,24 @@ function updateQuestion() {
 
 }
 
+const passSound = 'D:\testing code\passSound.mp3'
+const failSound = 'https://www.soundjay.com/misc/fail-buzzer-03.mp3'
+
+function playPassFail(status) {
+    let soundUrl
+    if (status) {
+        soundUrl = passSound
+    } else {
+        soundUrl = failSound
+    }
+    var audio = new Audio(soundUrl);
+    audio.play();
+
+}
+
+
+
+
 function checkAnswer() {
     console.log("Checking answer")
 
@@ -49,17 +67,28 @@ function checkAnswer() {
 
     if (userAnswer != correctAnswer) {
         showFailedMessage(userAnswer, correctAnswer)
-
+        playPassFail(false)
     } else {
         showPassedMessage(correctAnswer)
-
+        playPassFail(true)
     }
 
 }
 
+
+let lastEvent = null
+    // https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+let input = document.getElementById("num3")
+input.addEventListener("keyup", function(KeyboardEvent) {
+    if (KeyboardEvent.keyCode === 13) {
+        checkAndUpdateQuestion()
+    }
+})
+
 function checkAndUpdateQuestion() {
     checkAnswer()
     updateQuestion()
+
 }
 
 

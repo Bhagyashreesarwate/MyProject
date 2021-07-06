@@ -33,25 +33,3 @@ body {
     width: 144px;
     margin: auto;
 }
-
-.calculator-grid>button {
-    cursor: pointer;
-    font-size: 2rem;
-    border: 1px solid white;
-    outline: none;
-    background-color: rgba(255, 255, 255, .75);
-}
-
-.xbutton {
-    font-size: 2rem;
-    border: 2px solid whitesmoke;
-    width: 100px;
-    border-radius: 5px;
-    outline: none;
-    background-color: rgba(223, 175, 221);
-}
-
-.xbutton:hover {
-    cursor: pointer;
-    background-color: darkgray;
-}

@@ -26,19 +26,20 @@ function updateQuestion() {
 
 }
 
-const passSound = 'D:\testing code\passSound.mp3'
+const passSound = 'https://www.soundjay.com/misc/bell-ringing-04.mp3'
 const failSound = 'https://www.soundjay.com/misc/fail-buzzer-03.mp3'
 
-function playPassFail(status) {
-    let soundUrl
-    if (status) {
-        soundUrl = passSound
-    } else {
-        soundUrl = failSound
-    }
-    var audio = new Audio(soundUrl);
-    audio.play();
+const audioPass = new Audio(passSound);
+const audioFail = new Audio(failSound);
 
+function playPassFail(status) {
+
+    if (status) {
+        audioPass.play()
+    } else {
+        audioFail.play()
+    }
+    console.log("playing audio for - " + (status));
 }
 
 
@@ -66,11 +67,11 @@ function checkAnswer() {
     let correctAnswer = vN1 + vN2
 
     if (userAnswer != correctAnswer) {
-        showFailedMessage(userAnswer, correctAnswer)
         playPassFail(false)
+        showFailedMessage(userAnswer, correctAnswer)
     } else {
-        showPassedMessage(correctAnswer)
         playPassFail(true)
+        showPassedMessage(correctAnswer)
     }
 
 }

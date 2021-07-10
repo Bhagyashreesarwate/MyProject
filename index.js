@@ -95,11 +95,11 @@ function checkAndUpdateQuestion() {
 function showFailedMessage(userAnswer, correctAnswer) {
     let failedMsg = `Sorry --- you said ${userAnswer}\nBut the correct answer is ${correctAnswer}`
     console.error(`Showing error message ...\n${failedMsg}`)
-    setTimeout(function() { alert(failedMsg); }, 90);
+    setTimeout(function() { alert(failedMsg); }, 200);
 }
 
 function showPassedMessage(correctAnswer) {
     let succMsg = `Good Job!\nYou got the correct answer\n<${correctAnswer}>`
     console.log(`Showing success message ...\n${succMsg}`)
-    setTimeout(function() { alert(succMsg); }, 90);
+    setTimeout(function() { alert(succMsg); }, 200);
 }

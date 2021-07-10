@@ -44,7 +44,6 @@ function playPassFail(status) {
 
 
 
-
 function checkAnswer() {
     console.log("Checking answer")
 
@@ -96,11 +95,11 @@ function checkAndUpdateQuestion() {
 function showFailedMessage(userAnswer, correctAnswer) {
     let failedMsg = `Sorry --- you said ${userAnswer}\nBut the correct answer is ${correctAnswer}`
     console.error(`Showing error message ...\n${failedMsg}`)
-    alert(failedMsg)
+    setTimeout(function() { alert(failedMsg); }, 90);
 }
 
 function showPassedMessage(correctAnswer) {
     let succMsg = `Good Job!\nYou got the correct answer\n<${correctAnswer}>`
     console.log(`Showing success message ...\n${succMsg}`)
-    alert(succMsg)
+    setTimeout(function() { alert(succMsg); }, 90);
 }

@@ -85,7 +85,17 @@ input.addEventListener("keyup", function(KeyboardEvent) {
     }
 })
 
+function isValidinput() {
+    let input = document.getElementById("num3")
+        // TODO
+        // check that input is only digits, return true if only digits otherwise return false
+    return (true)
+}
+
 function checkAndUpdateQuestion() {
+    if (!isValidinput()) {
+        alert("input should be only digits")
+    }
     checkAnswer()
     updateQuestion()
 
@@ -102,4 +112,41 @@ function showPassedMessage(correctAnswer) {
     let succMsg = `Good Job!\nYou got the correct answer\n<${correctAnswer}>`
     console.log(`Showing success message ...\n${succMsg}`)
     setTimeout(function() { alert(succMsg); }, 200);
+}
+
+function generateRandomSequence(numberInList) {
+    let randomSequence = {
+        "sequence": []
+    }
+
+    let originalList = []
+    for (let i = 1; i <= numberInList; i++) {
+        originalList.push(i)
+    }
+
+    for (let i = 1; i <= numberInList; i++) {
+
+        let selectedNumber = Math.floor(Math.random() * originalList.length)
+        let element = originalList[selectedNumber]
+        console.log(`selectedNumber = ${selectedNumber} element = ${element}`)
+        originalList = removeElementFromList(originalList, selectedNumber)
+        randomSequence.sequence.push(element)
+        console.log(originalList)
+
+    }
+
+    console.log("final sequence:" + JSON.stringify(randomSequence))
+    return randomSequence
+}
+
+function removeElementFromList(aList, index) {
+    let myValue = aList[index]
+
+    function removeNumber(num) {
+        return num != myValue
+    }
+
+    let filteredList = aList.filter(removeNumber)
+    return filteredList
+
 }

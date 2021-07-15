@@ -89,7 +89,8 @@ function isValidinput() {
     let input = document.getElementById("num3")
         // TODO
         // check that input is only digits, return true if only digits otherwise return false
-    return (true)
+    let reg = /^[0 - 9] + $/;
+    return reg.test(input)
 }
 
 function checkAndUpdateQuestion() {

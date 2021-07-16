@@ -89,14 +89,22 @@ function isValidinput() {
     let input = document.getElementById("num3")
         // TODO
         // check that input is only digits, return true if only digits otherwise return false
-    let reg = /^[0 - 9] + $/;
-    return reg.test(input)
+    let reg = /^[0-9]+$/;
+    if (input.value.match(reg)) {
+        return true
+    } else {
+        alert('Input should be in digits only')
+        return false
+    }
+
+
 }
 
 function checkAndUpdateQuestion() {
-    if (!isValidinput()) {
-        alert("input should be only digits")
+    if (isValidinput(status === false)) {
+
     }
+
     checkAnswer()
     updateQuestion()
 

@@ -145,7 +145,7 @@ function generateRandomSequence(numberInList) {
     }
 
     console.log("final sequence:" + JSON.stringify(randomSequence))
-    return randomSequence
+    return randomSequence.sequence
 }
 
 function removeElementFromList(aList, index) {
@@ -158,4 +158,125 @@ function removeElementFromList(aList, index) {
     let filteredList = aList.filter(removeNumber)
     return filteredList
 
+}
+
+function getAnswerlist(correctAnswer) {
+    let options = [correctAnswer, correctAnswer - 1, correctAnswer + 1, correctAnswer + 2, correctAnswer - 2]
+    return options
+
+}
+
+function getrandomOptionList(correctAnswer) {
+    let answerList = getAnswerlist(correctAnswer)
+    let randomlist = generateRandomSequence(answerList.length)
+    console.log("randomlist" + randomlist)
+    let randomAnswerList = []
+    randomlist.forEach(element => {
+        randomAnswerList.push(answerList[element - 1])
+    });
+    return randomAnswerList
+}
+
+
+function answerTimerHandler() {
+
+    console.log("got timer event")
+    answerTimer.stop()
+    let continueTimer = checkAnswerOption()
+
+    if (continueTimer) {
+        answerTimer.reset()
+        console.log("set timer for next answer")
+    }
+
+    console.log("done with correct option")
+
+
+}
+
+function checkAnswerOption() {
+    if (isCurrentOptionCorrect()) {
+        alert("you missed correct answer")
+        return false
+    }
+    if (iscurrentoptionLast()) {
+        alert("you did not guess any answer")
+        return false
+    }
+    return true
+
+}
+
+function isCurrentOptionCorrect() {
+
+}
+
+function iscurrentoptionLast() {
+
+}
+
+function Timer(fn, t) {
+    var timerObj = setInterval(fn, t);
+
+    this.stop = function() {
+        if (timerObj) {
+            clearInterval(timerObj);
+            timerObj = null;
+        }
+        return this;
+    }
+
+    // start timer using current settings (if it's not already running)
+    this.start = function() {
+        if (!timerObj) {
+            this.stop();
+            timerObj = setInterval(fn, t);
+        }
+        return this;
+    }
+
+    // start with new or original interval, stop current interval
+    this.reset = function(newT = t) {
+        t = newT;
+        return this.stop().start();
+    }
+}
+
+let timeToShowAnswer = 10;
+// let answerTimer = setInterval(answerTimerHandler, timeToShowAnswer * 1000);
+
+/**
+ * 
+ 
+var answerTimer = new Timer(answerTimerHandler, timeToShowAnswer * 1000);
+
+
+// switch interval to 10 seconds
+answerTimer.reset(10000);
+
+// stop the timer
+answerTimer.stop();
+
+// start the timer
+answerTimer.start();
+*/
+
+function newQuestion() {
+    let num1 = getNum1()
+    let num2 = getNum2()
+    let correctAnswer = getAnswer(num1, num2)
+    let optionSequence = generateRandomSequence(correctAnswer)
+    optionSequence.forEach(e => {
+        showOption(e)
+        let continueOrNot = waitForTimerExpireOrUserInteraction()
+        if (continueOrNot) {
+            console.log("will now give next option")
+        } else {
+            console.log("options ended or user gave an answer")
+        }
+    })
+}
+
+function waitForTimerExpireOrUserInteraction(){
+    
 }
